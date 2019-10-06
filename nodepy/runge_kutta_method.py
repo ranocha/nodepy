@@ -1076,7 +1076,7 @@ class RungeKuttaMethod(GeneralLinearMethod):
             contractivity at least `r`.
 
             See :cite:`dekker1984`.
-                
+
         """
         B=np.diag(self.b)
         M=np.dot(B,self.A)+np.dot(self.A.T,B)-np.outer(self.b,self.b)
@@ -2107,7 +2107,8 @@ class ExplicitRungeKuttaPair(ExplicitRungeKuttaMethod):
                                     plotroots=False, alpha=1., scalefac=1.,
                                     to_file=False, longtitle=True, fignum=None):
         r"""Plot the absolute stability region and the function characterizing
-            stepsize control stability for an I controller of an RK pair.
+            stepsize control stability for an I controller of an RK pair,
+            cf. :cite:`hairerODEs2`.
             By default, the region of the main method is filled in red and the
             region of the embedded method is outlined in black.
 
@@ -2117,10 +2118,6 @@ class ExplicitRungeKuttaPair(ExplicitRungeKuttaMethod):
                 >>> bs5 = rk.loadRKM('BS5')
                 >>> bs5.plot_I_controller_stability() # doctest: +ELLIPSIS
                 <matplotlib.figure.Figure object at 0x...>
-
-            **Reference**:
-
-                #. [hairer1993b]_ pp. 24ff.
         """
         import nodepy.stability_function as stability_function
         import matplotlib.pyplot as plt
