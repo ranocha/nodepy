@@ -2806,6 +2806,24 @@ def loadRKM(which='All'):
                     description="The optimal four-stage, third order SSP Runge-Kutta method",
                     shortname='SSPRK(4,3)')
     #================================================
+    # The SSP(4,3) method of Kraaijevanger with maximal SSP coefficient and
+    # FSAL embedded method
+    A = np.array([[0, 0, 0, 0, 0],
+                  [one/2, 0, 0, 0, 0],
+                  [one/2, one/2, 0, 0, 0],
+                  [one/6, one/6, one/6, 0, 0],
+                  [one/6, one/6, one/6, one/2, 0]])
+    b = np.array([one/6, one/6, one/6, one/2, 0])
+    bhat = np.array([2.5746666666666701e-01,
+                     2.4909641038110714e-01,
+                     1.7863692295222683e-01,
+                     2.3597025628555979e-01,
+                     7.8829743714440167e-02])
+    RK['SSP43FSAL'] = ExplicitRungeKuttaPair(A=A, b=b, bhat=bhat,
+                    name='SSPRK(4,3)FSAL',
+                    description="The optimal four-stage, third order SSP Runge-Kutta method",
+                    shortname='SSPRK(4,3)FSAL')
+    #================================================
     m=10
     r=6*one
     alpha=snp.diag(snp.ones(m),-1)
