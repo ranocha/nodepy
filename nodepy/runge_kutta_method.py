@@ -2824,6 +2824,36 @@ def loadRKM(which='All'):
                     description="The optimal four-stage, third order SSP Runge-Kutta method",
                     shortname='SSPRK(4,3)FSAL')
     #================================================
+    # The SSP(9,3) method with maximal SSP coefficient and
+    # embedded method of Conde, Fekete, Shadid (https://arxiv.org/pdf/1806.08693.pdf)
+    ssp93 = SSPRK3(9)
+    A = ssp93.A
+    b = ssp93.b
+    bhat = np.array([one/9, one/9, one/9, one/9, one/9, one/9, one/9, one/9, one/9])
+    RK['SSP93'] = ExplicitRungeKuttaPair(A=A, b=b, bhat=bhat,
+                    name='SSPRK(9,3)',
+                    description="The optimal nine-stage, third order SSP Runge-Kutta method",
+                    shortname='SSPRK(9,3)')
+    #================================================
+    # The SSP(9,3) method with maximal SSP coefficient and
+    # new embedded method
+    ssp93 = SSPRK3(9)
+    A = ssp93.A
+    b = ssp93.b
+    bhat = np.array([1.5101793198966096e-01,
+                     5.0701344032451523e-02,
+                     5.3941231121029887e-02,
+                     3.7916587234895181e-02,
+                     3.4772644428934664e-02,
+                     2.7650261193026531e-02,
+                     3.0587233531068936e-01,
+                     1.5793078103869088e-01,
+                     1.8019688365061975e-01,])
+    RK['SSP93new'] = ExplicitRungeKuttaPair(A=A, b=b, bhat=bhat,
+                    name='SSPRK(9,3)',
+                    description="The optimal nine-stage, third order SSP Runge-Kutta method",
+                    shortname='SSPRK(9,3)')
+    #================================================
     m=10
     r=6*one
     alpha=snp.diag(snp.ones(m),-1)
